@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedNER (Chinese Medical Named-Entity Recognition)</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="../static/js/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">MedNER </h1>
+        <div class="titles">Chinese Medical Named-Entity Recognition</div>
+        <form id="text-form">
+            <textarea name="textarea" placeholder="Please enter text..." class="textarea"></textarea>
+            <br>
+            <button type="button" class="analyze-button" onclick="showOutput()">Submit</button>
+        </form>
+        <div>
+            <hr>
+          </div>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+        
+            <button type="submit" class="up-button">Upload</button>
+            <input type="file" name="file" accept=".csv, .xls, .xlsx">
+        </form>
+    </div>
+    <div id="overlay-box" class="overlay-box"></div>
+    <div id="output-box">
+        <div id="output">
+            {% if output %}
+                {{ output | safe }}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
